@@ -18,3 +18,7 @@ def about(request):
         'menu': menu,
     }
     return render(request, 'developer/about.html', context=data)
+
+
+def show_direction(request, dir_slug):
+    pass

@@ -9,6 +9,8 @@ class Developer(models.Model):
     is_published = models.BooleanField(default=True)
     slug = models.SlugField(max_length=125, unique=True, db_index=True)
 
+    direct = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
+
     def __str__(self):
         return self.lesson
 
