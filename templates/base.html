@@ -1,3 +1,4 @@
+{% load developer_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,20 +38,7 @@
         </div>
     </nav>
 </header>
-<ul class="nav flex-column">
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Active</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-    </li>
-</ul>
+{% get_direction %}
 {% block content %} {% endblock %}
 </body>
 </html>
