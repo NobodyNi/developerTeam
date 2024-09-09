@@ -13,5 +13,13 @@ class Developer(models.Model):
         return self.lesson
 
 
+class Category(models.Model):
+    direction = models.CharField(max_length=150)
+    slug = models.SlugField(max_length=150, unique=True, db_index=True)
+
+    def __str__(self):
+        return self.direction
+
+
 
 
