@@ -15,6 +15,9 @@ class Developer(models.Model):
     def __str__(self):
         return self.lesson
 
+    def get_absolute_url(self):
+        return reverse('posting', kwargs={'post_slug': self.slug})
+
 
 class Category(models.Model):
     direction = models.CharField(max_length=150)

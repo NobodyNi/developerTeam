@@ -1,15 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block content %}
-<nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <span class="navbar-brand mb-0 h1">
-      <img src="{% static 'developer/images/python_images.png' %}" width="25" height="25">
-      Python</span>
-  </div>
-</nav>
-<ul class="nav flex-column">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Active</a>
-  </li>
+<h1>{{ title }}</h1>
+<p>{{ p.content }}</p>
 {% endblock %}
