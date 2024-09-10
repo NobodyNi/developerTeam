@@ -1,6 +1,7 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
-from developer.models import Category, Developer
+from developer.models import Category, Developer, CategoryOOP
 
 menu = [{'title': 'Главная страница', 'url_name': 'home'},
         {'title': 'О сайте', 'url_name': 'about'}]
@@ -24,11 +25,22 @@ def about(request):
 
 def show_direction(request, dir_slug):
     category = get_object_or_404(Category, slug=dir_slug)
-    data = {
+    data_1 = {
         'title': category.direction,
-        'posts': Developer.objects.filter(is_published=1)
+        'posts': Developer.objects.filter(is_published=1),
     }
-    return render(request, 'developer/category.html', context=data)
+
+    data_2 = {
+        'title': category.direction,
+        'posts': CategoryOOP.objects.filter(is_published=1),
+    }
+
+    if dir_slug == 'python':
+        return render(request, 'developer/category.html', context=data_1)
+    elif dir_slug == 'python-oop':
+        return render(request, 'developer/category_oop.html', context=data_2)
+    else:
+        return HttpResponse('Страница не найдена')
 
 
 def show_post(request, post_slug):
