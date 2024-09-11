@@ -8,11 +8,72 @@
       Python</span>
     </div>
 </nav>
-<ul class="nav flex-column">
-    {% for p in posts %}
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{{ p.get_absolute_url }}">{{  p.lesson }}</a>
-    </li>
-    {% endfor %}
+<div class="row">
+    <div class="col-md-2">
+        <nav class="navbar navbar-light bg-light">
+            <div class="nav flex-column">
+                {% for p in posts %}
+                <a href="{{ p.get_absolute_url }}" class="nav-link active">{{ p.lesson }}</a>
+                {% endfor %}
+            </div>
+        </nav>
+    </div>
+    <div class="col-md-9">
+        <h1 class="text-center">
+            <img src="{% static 'developer/images/python_images.png' %}" width="25" height="25">
+            Python</h1>
+        <img src="{% static 'developer/images/gvido.jpg' %}" width="450" height="290" class="float-end">
+        <p style="width: 550px;">Язык Python разработал голландский программист <strong>Гвидо Ван Россум</strong> (Guido van Rossum) в 1991
+            году. Гвидо был
+            фанатом британского комедийного сериала <strong>«Monty Python’s Flying Circus»</strong>, откуда и пришло
+            название языка.</p>
+        <hr>
+        <p style="width: 550px;">
+            Основные версии языка <strong>Python</strong> – Python 2 и Python 3. Версия Python 2 считается устаревающей,
+            версия 3 — более
+            новой и современной. Почему не откажутся от второй версии? Если коротко, Python 3 не имеет полной обратной
+            совместимости с предыдущей версией, а на Python 2 написано очень много программ. У разработчиков нет
+            возможности переписать всё на новую версию. <br><br>
+        </p>
+        <hr>
 
+        <ol>
+
+            <strong>Преимущества Python</strong> <br><br>
+            <li>Это <strong>интерпретируемый язык</strong> программирования -
+                он не требует отдельного этапа компиляции;
+            </li>
+            <li>программа на языке Python запускается прямо из исходного кода;</li>
+            <li>Это высокоуровневый язык программирования;</li>
+            <li>Это платформонезависимый язык:</li>
+            <li>программы на Python можно создавать на разных операционных системах (Linux, Windows, OS X);</li>
+
+            <li>Это open source проект;</li>
+            <li>Это простой язык;</li>
+            <li>Это встраиваемый скриптовый язык;</li>
+            <li>Это динамический язык, что упрощает написание несложных программ;</li>
+            <li>Для Python существует огромная библиотека классов на любой вкус.</li>
+        </ol>
+        <ol>
+            <strong>Недостатки Python</strong><br><br>
+            <li>Низкая скорость выполнения по сравнению с такими языками, как C и C++;</li>
+            <li>Динамическая типизация языка — минус при написании сложных программ.</li>
+
+        </ol>
+
+        <ol>
+            <strong>Проекты, в которых используется Python</strong><br><br>
+            <li>Компания Google использует Python в своей поисковой системе;</li>
+            <li>Компании Intel, Cisco, Hewlett-Packard, Seagate, Qualcomm и IBM, используют Python для тестирования</li>
+            <li>аппаратного обеспечения;</li>
+            <li>Сервис YouTube в значительной степени реализован на Python;</li>
+            <li>Агентство национальной безопасности (NSA) использует Python для шифрования и анализа данных;</li>
+            <li>Компании JPMorgan Chase, UBS, Getco и Citadel применяют Python для прогнозирования финансового рынка;</li>
+            <li>Программа BitTorrent для обмена файлами в пиринговых сетях написана на языке Python;</li>
+            <li>NASA, Los Alamos, JPL и Fermilab используют Python для научных вычислений.</li>
+        </ol>
+
+
+    </div>
+</div>
 {% endblock %}
