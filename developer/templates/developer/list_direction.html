@@ -1,7 +1,12 @@
 <ul class="nav nav-tabs">
-    {% for cat in cats %}
+  <style>
+    .nav-tabs {
+      padding-left: 30px;
+    }
+  </style>
+  {% for cat in cats %}
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{{ cat.get_absolute_url }}">{{ cat.direction }}</a>
+      <a class="nav-link active" aria-current="page" href="{{ cat.get_absolute_url }}">{{ cat.direction }}</a>
     </li>
-    {% endfor %}
+  {% endfor %}
 </ul>
