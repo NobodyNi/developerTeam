@@ -18,6 +18,9 @@ class Developer(models.Model):
     def get_absolute_url(self):
         return reverse('posting', kwargs={'post_slug': self.slug})
 
+    class Meta:
+        ordering = ['time_create']
+
 
 class Category(models.Model):
     direction = models.CharField(max_length=150)
