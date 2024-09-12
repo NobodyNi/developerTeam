@@ -1,9 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-<ul>
-    <h1>{{ title }}</h1>
-    <ul>
-        <p>{{ posts.content }}</p>
-    </ul>
-</ul>
+{% load static %}
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">
+            <img src="{% static 'developer/images/python_images.png' %}" width="25" height="25">
+            Python</span>
+    </div>
+</nav>
+<div class="row">
+    <div class="col-md-2">
+        <nav class="navbar navbar-light bg-light">
+            <div class="nav flex-column">
+                {% for n in navi %}
+                <a href="{{ n.get_absolute_url }}" class="nav-link active">{{ n.lesson }}</a>
+                {% endfor %}
+            </div>
+        </nav>
+    </div>
+    <div class="col-md-8">
+        <h1 style="margin: 10px 20px;">{{ title }}</h1><br>
+        <div style="border: 2px solid black; border-radius: 15px; margin: 10px 20px 20px; padding: 20px;">
+            <p>{{ posts.content }}</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

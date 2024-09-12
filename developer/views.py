@@ -44,8 +44,10 @@ def show_direction(request, dir_slug):
 
 def show_post(request, post_slug):
     posts = get_object_or_404(Developer, slug=post_slug)
+    navi = Developer.objects.filter(is_published=1)
     data = {
         'title': posts.lesson,
         'posts': posts,
+        'navi': navi,
     }
     return render(request, 'developer/post.html', context=data)
