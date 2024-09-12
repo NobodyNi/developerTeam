@@ -9,7 +9,6 @@ menu = [{'title': 'Главная страница', 'url_name': 'home'},
 
 def index(request):
     data = {
-        'title': 'Главная страница',
         'menu': menu,
     }
     return render(request, 'developer/index.html', context=data)
