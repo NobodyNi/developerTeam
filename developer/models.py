@@ -32,6 +32,9 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('direction', kwargs={'dir_slug': self.slug})
 
+    class Meta:
+        ordering = ['id']
+
 
 class CategoryOOP(models.Model):
     lesson = models.CharField(max_length=100)
@@ -46,6 +49,3 @@ class CategoryOOP(models.Model):
 
     def get_absolute_url(self):
         return reverse('posting_oop', kwargs={'cat_oop_slug', self.slug})
-
-
-
