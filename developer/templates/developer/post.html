@@ -21,7 +21,7 @@
     <div class="col-md-8">
         <h1 style="margin: 10px 20px;">{{ title }}</h1><br>
         <div style="border: 2px solid black; border-radius: 15px; margin: 10px 20px 20px; padding: 20px;">
-            <p>{{ posts.content }}</p>
+            <p>{{ posts.content|safe }}</p>
         </div>
     </div>
 </div>
