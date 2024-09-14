@@ -11,6 +11,7 @@ class Developer(models.Model):
     slug = models.SlugField(max_length=125, unique=True, db_index=True)
 
     direct = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
+    sub_lesson = models.ManyToManyField('SubDeveloper', blank=True, related_name='sub')
 
     def __str__(self):
         return self.lesson
@@ -20,6 +21,18 @@ class Developer(models.Model):
 
     class Meta:
         ordering = ['time_create']
+
+
+class SubDeveloper(models.Model):
+    lesson = models.CharField(max_length=100)
+    content = models.TextField(blank=True)
+    slug = models.SlugField(max_length=125, db_index=True, unique=True)
+
+    def __str__(self):
+        return self.lesson
+
+    def get_absolute_url(self):
+        pass
 
 
 class Category(models.Model):
