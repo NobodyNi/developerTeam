@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load developer_tags %}
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">
@@ -12,8 +13,8 @@
     <div class="col-md-2">
         <nav class="navbar navbar-light bg-light">
             <div class="nav flex-column">
-                {% for n in navi %}
-                <a href="{{ n.get_absolute_url }}" class="nav-link active">{{ n.lesson }}</a>
+                {% for sub in lesson %}
+                <a href="{{ sub.get_absolute_url }}" class="nav-link">{{ sub.lesson }}</a>
                 {% endfor %}
             </div>
         </nav>

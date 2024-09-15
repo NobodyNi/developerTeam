@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
-from developer.models import Category, Developer, CategoryOOP
+from developer.models import Category, Developer, CategoryOOP, SubDeveloper
 
 menu = [{'title': 'Главная страница', 'url_name': 'home'},
         {'title': 'О сайте', 'url_name': 'about'}]
@@ -44,10 +44,19 @@ def show_direction(request, dir_slug):
 
 def show_post(request, post_slug):
     posts = get_object_or_404(Developer, slug=post_slug)
-    navi = Developer.objects.filter(is_published=1)
+    lesson = posts.sub_lesson.all()
     data = {
         'title': posts.lesson,
         'posts': posts,
-        'navi': navi,
+        'lesson': lesson,
+    }
+    return render(request, 'developer/post.html', context=data)
+
+
+def show_sub_lesson(request, sub_slug):
+    lesson = get_object_or_404(SubDeveloper, slug=sub_slug)
+    data = {
+        'title': lesson.lesson,
+        'posts': lesson,
     }
     return render(request, 'developer/post.html', context=data)

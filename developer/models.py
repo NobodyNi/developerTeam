@@ -32,7 +32,7 @@ class SubDeveloper(models.Model):
         return self.lesson
 
     def get_absolute_url(self):
-        pass
+        return reverse('sub_lesson', kwargs={'sub_slug': self.slug})
 
 
 class Category(models.Model):

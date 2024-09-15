@@ -1,6 +1,6 @@
 from django import template
 
-from developer.models import Category
+from developer.models import Category, SubDeveloper
 
 register = template.Library()
 
@@ -9,4 +9,3 @@ register = template.Library()
 def get_direction():
     cats = Category.objects.all()
     return {'cats': cats}
-
