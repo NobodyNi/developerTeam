@@ -7,6 +7,7 @@ class DeveloperAdmin(admin.ModelAdmin):
     list_display = ['lesson', 'content', 'time_create', 'is_published', 'slug']
     list_editable = ['content', 'is_published', 'slug']
     search_fields = ['lesson']
+    list_per_page = 5
 
 
 @admin.register(SubDeveloper)
@@ -14,6 +15,8 @@ class SubDeveloperAdmin(admin.ModelAdmin):
     list_display = ['lesson', 'content', 'slug']
     list_editable = ['content', 'slug']
     search_fields = ['lesson']
+    list_per_page = 5
+    fields = ['lesson', 'content', 'slug']
 
 
 
