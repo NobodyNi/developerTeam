@@ -38,6 +38,8 @@ def show_direction(request, dir_slug):
         return render(request, 'developer/category_oop.html', context=data_2)
     elif dir_slug == 'python-async':
         return render(request, 'developer/async_py.html')
+    elif dir_slug == 'python-algoritm':
+        return render(request, 'developer/algoritm_py.html')
     else:
         return HttpResponse('Страница не найдена')
 
