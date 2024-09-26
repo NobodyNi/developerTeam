@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">
+      <img src="{% static 'developer/images/python_images.png' %}" width="25" height="25">
+      <a href="{% url 'direction' 'python-async' %}">Асинхронный Python</a></span>
+    </div>
+</nav>
+<div class="row">
+    <div class="col-md-2">
+        <nav class="navbar navbar-light bg-light">
+            <div class="nav flex-column">
+                {% for p in posts %}
+                <a href="{{ p.get_absolute_url }}" class="nav-link active">{{ p.lesson }}</a>
+                {% endfor %}
+            </div>
+        </nav>
+    </div>
+    <div class="col-md-9">
+        <h1 class="text-center">
+            <img src="{% static 'developer/images/python_images.png' %}" width="25" height="25">
+            Асинхронный Python</h1><br>
+        <p>
+        </p>
+    </div>
+</div>
+{% endblock %}
