@@ -5,7 +5,7 @@
     <div class="container-fluid">
     <span class="navbar-brand mb-0 h1">
       <img src="{% static 'developer/images/python_images.png' %}" width="25" height="25">
-      Python ООП</span>
+      <a href="{% url 'direction' 'python-oop' %}">Python ООП</a></span>
     </div>
 </nav>
 <div class="row">
@@ -13,7 +13,7 @@
         <nav class="navbar navbar-light bg-light">
             <div class="nav flex-column">
                 {% for p in posts %}
-                <a href="#" class="nav-link active">{{ p.lesson }}</a>
+                <a href="{{ p.get_absolute_url }}" class="nav-link active">{{ p.lesson }}</a>
                 {% endfor %}
             </div>
         </nav>
