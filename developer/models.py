@@ -90,3 +90,77 @@ class SubCategoryOOP(models.Model):
     class Meta:
         verbose_name = 'ООП подтема'
         verbose_name_plural = 'ООП подтемы'
+
+
+class CategoryAlgoritm(models.Model):
+    lesson = models.CharField(max_length=100, verbose_name='Тема')
+    content = models.TextField(blank=True, verbose_name='Информация')
+    time_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    time_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    is_published = models.BooleanField(default=True, verbose_name='Статус')
+    slug = models.SlugField(max_length=125, unique=True, db_index=True, verbose_name='Слаг')
+
+    sub_lesson_algoritm = models.ManyToManyField('SubCategoryAlgoritm', blank=True, related_name='sub_algoritm')
+
+    def __str__(self):
+        return self.lesson
+
+    def get_absolute_url(self):
+        return reverse('posting_algoritm', kwargs={'algoritm_slug': self.slug})
+
+    class Meta:
+        verbose_name = "Алгоритмы"
+        verbose_name_plural = "Алгоритмы"
+
+
+class SubCategoryAlgoritm(models.Model):
+    lesson = models.CharField(max_length=100, verbose_name='Подтема')
+    content = models.TextField(blank=True, verbose_name='Информация')
+    slug = models.SlugField(max_length=125, db_index=True, unique=True, verbose_name='Слаг')
+
+    def __str__(self):
+        return self.lesson
+
+    def get_absolute_url(self):
+        return reverse('posting_sub_algoritm', kwargs={'sub_algoritm': self.slug})
+
+    class Meta:
+        verbose_name = 'Алгоритмы подтема'
+        verbose_name_plural = 'Алгоритмы подтемы'
+
+
+class CategoryAsync(models.Model):
+    lesson = models.CharField(max_length=100, verbose_name='Тема')
+    content = models.TextField(blank=True, verbose_name='Информация')
+    time_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    time_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
+    is_published = models.BooleanField(default=True, verbose_name='Статус')
+    slug = models.SlugField(max_length=125, unique=True, db_index=True, verbose_name='Слаг')
+
+    sub_lesson_async = models.ManyToManyField('SubCategoryAsync', blank=True, related_name='sub_async')
+
+    def __str__(self):
+        return self.lesson
+
+    def get_absolute_url(self):
+        return reverse('posting_async', kwargs={'async_slug': self.slug})
+
+    class Meta:
+        verbose_name = "Асинхронность"
+        verbose_name_plural = "Асинхронность"
+
+
+class SubCategoryAsync(models.Model):
+    lesson = models.CharField(max_length=100, verbose_name='Подтема')
+    content = models.TextField(blank=True, verbose_name='Информация')
+    slug = models.SlugField(max_length=125, db_index=True, unique=True, verbose_name='Слаг')
+
+    def __str__(self):
+        return self.lesson
+
+    def get_absolute_url(self):
+        return reverse('posting_sub_async', kwargs={'sub_async': self.slug})
+
+    class Meta:
+        verbose_name = 'Асинхронность подтема'
+        verbose_name_plural = 'Асинхронность подтемы'

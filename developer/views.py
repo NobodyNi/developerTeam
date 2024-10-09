@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
-from developer.models import Category, Developer, CategoryOOP, SubDeveloper, SubCategoryOOP
+from developer.models import Category, Developer, CategoryOOP, SubDeveloper, SubCategoryOOP, SubCategoryAlgoritm, \
+    CategoryAlgoritm, CategoryAsync, SubCategoryAsync
 
 
 # menu = [{'title': 'Главная страница', 'url_name': 'home'},
@@ -32,14 +33,24 @@ def show_direction(request, dir_slug):
         'posts': CategoryOOP.objects.filter(is_published=1),
     }
 
+    data_3 = {
+        'title': category.direction,
+        'posts': CategoryAlgoritm.objects.filter(is_published=1),
+    }
+
+    data_4 = {
+        'title': category.direction,
+        'posts': CategoryAsync.objects.filter(is_published=1),
+    }
+
     if dir_slug == 'python':
         return render(request, 'developer/category.html', context=data_1)
     elif dir_slug == 'python-oop':
         return render(request, 'developer/category_oop.html', context=data_2)
     elif dir_slug == 'python-async':
-        return render(request, 'developer/async_py.html')
+        return render(request, 'developer/async_py.html', context=data_4)
     elif dir_slug == 'python-algoritm':
-        return render(request, 'developer/algoritm_py.html')
+        return render(request, 'developer/algoritm_py.html', context=data_3)
     else:
         return HttpResponse('Страница не найдена')
 
@@ -82,3 +93,43 @@ def show_sub_lesson_oop(request, sub_slug):
         'posts': lesson,
     }
     return render(request, 'developer/post_oop.html', context=data)
+
+
+def show_post_algoritm(request, algoritm_slug):
+    posts = get_object_or_404(CategoryAlgoritm, slug=algoritm_slug)
+    lesson = posts.sub_lesson_algoritm.all()
+    data = {
+        'title': posts.lesson,
+        'posts': posts,
+        'lesson': lesson,
+    }
+    return render(request, 'developer/post_algoritm.html', context=data)
+
+
+def show_sub_lesson_algoritm(request, sub_algoritm):
+    lesson = get_object_or_404(SubCategoryAlgoritm, slug=sub_algoritm)
+    data = {
+        'title': lesson.lesson,
+        'posts': lesson,
+    }
+    return render(request, 'developer/post_algoritm.html', context=data)
+
+
+def show_post_async(request, async_slug):
+    posts = get_object_or_404(CategoryAsync, slug=async_slug)
+    lesson = posts.sub_lesson_async.all()
+    data = {
+        'title': posts.lesson,
+        'posts': posts,
+        'lesson': lesson,
+    }
+    return render(request, 'developer/post_async.html', context=data)
+
+
+def show_sub_lesson_async(request, sub_async):
+    lesson = get_object_or_404(SubCategoryAsync, slug=sub_async)
+    data = {
+        'title': lesson.lesson,
+        'posts': lesson,
+    }
+    return render(request, 'developer/post_async.html', context=data)
