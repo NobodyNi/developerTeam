@@ -29,22 +29,22 @@ def show_direction(request, dir_slug):
     category = get_object_or_404(Category, slug=dir_slug)
     data_1 = {
         'title': category.direction,
-        'posts': Developer.objects.filter(is_published=1),
+        'posts': Developer.objects.filter(is_published=1).order_by('time_create'),
     }
 
     data_2 = {
         'title': category.direction,
-        'posts': CategoryOOP.objects.filter(is_published=1),
+        'posts': CategoryOOP.objects.filter(is_published=1).order_by('time_create'),
     }
 
     data_3 = {
         'title': category.direction,
-        'posts': CategoryAlgoritm.objects.filter(is_published=1),
+        'posts': CategoryAlgoritm.objects.filter(is_published=1).order_by('time_create'),
     }
 
     data_4 = {
         'title': category.direction,
-        'posts': CategoryAsync.objects.filter(is_published=1),
+        'posts': CategoryAsync.objects.filter(is_published=1).order_by('time_create'),
     }
 
     if dir_slug == 'python':
@@ -61,7 +61,7 @@ def show_direction(request, dir_slug):
 
 def show_post(request, post_slug):
     posts = get_object_or_404(Developer, slug=post_slug)
-    lesson = posts.sub_lesson.all()
+    lesson = posts.sub_lesson.all().order_by('pk')
     data = {
         'title': posts.lesson,
         'posts': posts,
@@ -72,7 +72,7 @@ def show_post(request, post_slug):
 
 def show_post_oop(request, cat_oop_slug):
     posts = get_object_or_404(CategoryOOP, slug=cat_oop_slug)
-    lesson = posts.sub_lesson_oop.all()
+    lesson = posts.sub_lesson_oop.all().order_by('pk')
     data = {
         'title': posts.lesson,
         'posts': posts,
@@ -101,7 +101,7 @@ def show_sub_lesson_oop(request, sub_slug):
 
 def show_post_algoritm(request, algoritm_slug):
     posts = get_object_or_404(CategoryAlgoritm, slug=algoritm_slug)
-    lesson = posts.sub_lesson_algoritm.all()
+    lesson = posts.sub_lesson_algoritm.all().order_by('pk')
     data = {
         'title': posts.lesson,
         'posts': posts,
@@ -121,7 +121,7 @@ def show_sub_lesson_algoritm(request, sub_algoritm):
 
 def show_post_async(request, async_slug):
     posts = get_object_or_404(CategoryAsync, slug=async_slug)
-    lesson = posts.sub_lesson_async.all()
+    lesson = posts.sub_lesson_async.all().order_by('pk')
     data = {
         'title': posts.lesson,
         'posts': posts,
