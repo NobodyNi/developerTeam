@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <h1 style="margin: 10px 20px;">
+            <h1 class="header">
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                      class="bi bi-balloon-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -12,27 +12,37 @@
                 </svg>
                 DeveloperTeam - небольшой справочник по темам и теории Python.
             </h1>
+            <div class="card">
+                <h5 class="card-header">Рекомендуем изучить</h5>
+                <div class="card-body">
+                    <h5 class="card-title">{{ random_theme.0 }}</h5>
+                    <p class="card-text">   </p>
+                    <a href="{% url 'sub_lesson' random_theme.1 %}" class="btn btn-secondary">Поехали!</a>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
-            <h2 style="margin: 10px 20px;">Актуальные темы</h2>
+            <h2 class="sidebar-header">Актуальные темы</h2>
             <ul>
-                <li style="margin-bottom: 10px;">
+                <li class="sidebar-item">
                     <img src="{% static 'developer/images/python_images.png' %}" width="25" height="25">
-                    <button class="btn btn-secondary" onclick="window.location.href='{% url 'direction' 'python' %}'">Начать
+                    <button class="btn btn-secondary" onclick="window.location.href='{% url 'direction' 'python' %}'">
+                        Начать
                         изучать Python
                     </button>
                     <p>Python - это высокоуровневый язык программирования, который используется для разработки
                         веб-приложений, игр, научных вычислений и т.д.</p>
                 </li>
-                <li style="margin-bottom: 10px;">
+                <li class="sidebar-item">
                     <img src="{% static 'developer/images/python_images.png' %}" width="25" height="25">
-                    <button class="btn btn-secondary" onclick="window.location.href='{% url 'direction' 'python-oop' %}'">
+                    <button class="btn btn-secondary"
+                            onclick="window.location.href='{% url 'direction' 'python-oop' %}'">
                         Начать
                         изучать Python ООП
                     </button>
                     <p>ООП - это парадигма программирования, которая основана на концепциях объектов и классов.</p>
                 </li>
-                <li style="margin-bottom: 10px;">
+                <li class="sidebar-item">
                     <img src="{% static 'developer/images/python_images.png' %}" width="25" height="25">
                     <button class="btn btn-secondary"
                             onclick="window.location.href='{% url 'direction' 'python-algoritm' %}'">Начать
@@ -40,9 +50,10 @@
                     </button>
                     <p>Алгоритмы - это набор инструкций, которые позволяют решить задачу или выполнить задание.</p>
                 </li>
-                <li style="margin-bottom: 10px;">
+                <li class="sidebar-item">
                     <img src="{% static 'developer/images/python_images.png' %}" width="25" height="25">
-                    <button class="btn btn-secondary" onclick="window.location.href='{% url 'direction' 'python-async' %}'">
+                    <button class="btn btn-secondary"
+                            onclick="window.location.href='{% url 'direction' 'python-async' %}'">
                         Начать
                         изучать Асинхронность
                     </button>

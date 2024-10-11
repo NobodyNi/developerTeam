@@ -4,5 +4,4 @@
 __pycache__/
 .idea/
 db1.json
-dump.sql
 dump1.sql

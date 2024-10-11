@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
+from .services import random_lesson_slug
 
 from developer.models import Category, Developer, CategoryOOP, SubDeveloper, SubCategoryOOP, SubCategoryAlgoritm, \
     CategoryAlgoritm, CategoryAsync, SubCategoryAsync
@@ -10,7 +11,10 @@ from developer.models import Category, Developer, CategoryOOP, SubDeveloper, Sub
 
 
 def index(request):
-    return render(request, 'developer/index.html')
+    data = {
+        'random_theme': random_lesson_slug(),
+    }
+    return render(request, 'developer/index.html', context=data)
 
 
 # def about(request):
