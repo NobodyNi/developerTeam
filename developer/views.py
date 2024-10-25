@@ -7,13 +7,16 @@ from .services import random_lesson_slug
 
 from developer.models import Category, Developer, CategoryOOP, SubDeveloper, SubCategoryOOP, SubCategoryAlgoritm, \
     CategoryAlgoritm, CategoryAsync, SubCategoryAsync
+from .utils import PostMixin
 
 
 class IndexView(TemplateView):
     template_name = 'developer/index.html'
-    extra_context = {
-        'random_theme': random_lesson_slug(),
-    }
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['random_theme'] = random_lesson_slug()
+        return context
 
 
 class DirectionView(View):
@@ -43,24 +46,17 @@ class DirectionView(View):
         return render(request, template_name, context=context)
 
 
-class PostView(ListView):
+class PostView(PostMixin, ListView):
     model = Developer
     template_name = 'developer/post.html'
+    lesson_attr = 'sub_lesson'
 
     def get_queryset(self):
         post_slug = self.kwargs['post_slug']
         return [get_object_or_404(Developer, slug=post_slug)]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        post = self.object_list[0]
-        context['title'] = post.lesson
-        context['lesson'] = post.sub_lesson.all().order_by('pk')
-        context['posts'] = post
-        return context
 
-
-class SubPostView(ListView):
+class SubPostView(PostMixin, ListView):
     model = SubDeveloper
     template_name = 'developer/post.html'
 
@@ -68,32 +64,18 @@ class SubPostView(ListView):
         sub_slug = self.kwargs['sub_slug']
         return [get_object_or_404(SubDeveloper, slug=sub_slug)]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        post = self.object_list[0]
-        context['title'] = post.lesson
-        context['posts'] = post
-        return context
 
-
-class PostViewOOP(ListView):
+class PostViewOOP(PostMixin, ListView):
     model = CategoryOOP
     template_name = 'developer/post_oop.html'
+    lesson_attr = 'sub_lesson_oop'
 
     def get_queryset(self):
         cat_oop_slug = self.kwargs['cat_oop_slug']
         return [get_object_or_404(CategoryOOP, slug=cat_oop_slug)]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        post = self.object_list[0]
-        context['title'] = post.lesson
-        context['lesson'] = post.sub_lesson_oop.all().order_by('pk')
-        context['posts'] = post
-        return context
 
-
-class SubPostViewOOP(ListView):
+class SubPostViewOOP(PostMixin, ListView):
     model = SubCategoryOOP
     template_name = 'developer/post_oop.html'
 
@@ -101,32 +83,18 @@ class SubPostViewOOP(ListView):
         sub_slug = self.kwargs['sub_slug']
         return [get_object_or_404(SubCategoryOOP, slug=sub_slug)]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        post = self.object_list[0]
-        context['title'] = post.lesson
-        context['posts'] = post
-        return context
 
-
-class PostViewAlgoritm(ListView):
+class PostViewAlgoritm(PostMixin, ListView):
     model = CategoryAlgoritm
     template_name = 'developer/post_algoritm.html'
+    lesson_attr = 'sub_lesson_algoritm'
 
     def get_queryset(self):
         algoritm_slug = self.kwargs['algoritm_slug']
         return [get_object_or_404(CategoryAlgoritm, slug=algoritm_slug)]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        post = self.object_list[0]
-        context['title'] = post.lesson
-        context['lesson'] = post.sub_lesson_algoritm.all().order_by('pk')
-        context['posts'] = post
-        return context
 
-
-class SubPostViewAlgoritm(ListView):
+class SubPostViewAlgoritm(PostMixin, ListView):
     model = SubCategoryAlgoritm
     template_name = 'developer/post_algoritm.html'
 
@@ -134,43 +102,21 @@ class SubPostViewAlgoritm(ListView):
         sub_algoritm = self.kwargs['sub_algoritm']
         return [get_object_or_404(SubCategoryAlgoritm, slug=sub_algoritm)]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        post = self.object_list[0]
-        context['title'] = post.lesson
-        context['posts'] = post
-        return context
 
-
-class PostViewAsync(ListView):
+class PostViewAsync(PostMixin, ListView):
     model = CategoryAsync
     template_name = 'developer/post_async.html'
+    lesson_attr = 'sub_lesson_async'
 
     def get_queryset(self):
         async_slug = self.kwargs['async_slug']
         return [get_object_or_404(CategoryAsync, slug=async_slug)]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        post = self.object_list[0]
-        context['title'] = post.lesson
-        context['lesson'] = post.sub_lesson_async.all().order_by('pk')
-        context['posts'] = post
-        return context
 
-
-class SubPostViewAsync(ListView):
+class SubPostViewAsync(PostMixin, ListView):
     model = SubCategoryAsync
     template_name = 'developer/post_async.html'
 
     def get_queryset(self):
         sub_async = self.kwargs['sub_async']
         return [get_object_or_404(SubCategoryAsync, slug=sub_async)]
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        post = self.object_list[0]
-        context['title'] = post.lesson
-        context['posts'] = post
-        return context
-
