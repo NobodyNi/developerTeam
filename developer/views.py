@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views import View
@@ -63,27 +64,27 @@ class SubPostViewOOP(PostMixin, ListView):
     slug_field = 'sub_slug'
 
 
-class PostViewAlgoritm(PostMixin, ListView):
+class PostViewAlgoritm(LoginRequiredMixin, PostMixin, ListView):
     model = CategoryAlgoritm
     template_name = 'developer/post_algoritm.html'
     lesson_attr = 'sub_lesson_algoritm'
     slug_field = 'algoritm_slug'
 
 
-class SubPostViewAlgoritm(PostMixin, ListView):
+class SubPostViewAlgoritm(LoginRequiredMixin, PostMixin, ListView):
     model = SubCategoryAlgoritm
     template_name = 'developer/post_algoritm.html'
     slug_field = 'sub_algoritm'
 
 
-class PostViewAsync(PostMixin, ListView):
+class PostViewAsync(LoginRequiredMixin, PostMixin, ListView):
     model = CategoryAsync
     template_name = 'developer/post_async.html'
     lesson_attr = 'sub_lesson_async'
     slug_field = 'async_slug'
 
 
-class SubPostViewAsync(PostMixin, ListView):
+class SubPostViewAsync(LoginRequiredMixin, PostMixin, ListView):
     model = SubCategoryAsync
     template_name = 'developer/post_async.html'
     slug_field = 'sub_async'
