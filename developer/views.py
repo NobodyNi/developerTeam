@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views import View
@@ -84,7 +85,7 @@ class SubPostViewOOP(PostMixin, ListView):
         return [get_object_or_404(SubCategoryOOP, slug=sub_slug)]
 
 
-class PostViewAlgoritm(PostMixin, ListView):
+class PostViewAlgoritm(LoginRequiredMixin, PostMixin, ListView):
     model = CategoryAlgoritm
     template_name = 'developer/post_algoritm.html'
     lesson_attr = 'sub_lesson_algoritm'
@@ -94,7 +95,7 @@ class PostViewAlgoritm(PostMixin, ListView):
         return [get_object_or_404(CategoryAlgoritm, slug=algoritm_slug)]
 
 
-class SubPostViewAlgoritm(PostMixin, ListView):
+class SubPostViewAlgoritm(LoginRequiredMixin, PostMixin, ListView):
     model = SubCategoryAlgoritm
     template_name = 'developer/post_algoritm.html'
 
@@ -103,7 +104,7 @@ class SubPostViewAlgoritm(PostMixin, ListView):
         return [get_object_or_404(SubCategoryAlgoritm, slug=sub_algoritm)]
 
 
-class PostViewAsync(PostMixin, ListView):
+class PostViewAsync(LoginRequiredMixin, PostMixin, ListView):
     model = CategoryAsync
     template_name = 'developer/post_async.html'
     lesson_attr = 'sub_lesson_async'
@@ -113,7 +114,7 @@ class PostViewAsync(PostMixin, ListView):
         return [get_object_or_404(CategoryAsync, slug=async_slug)]
 
 
-class SubPostViewAsync(PostMixin, ListView):
+class SubPostViewAsync(LoginRequiredMixin, PostMixin, ListView):
     model = SubCategoryAsync
     template_name = 'developer/post_async.html'
 
