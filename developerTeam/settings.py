@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'developer.apps.DeveloperConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -86,10 +87,6 @@ DATABASES = {
         'HOST': os.getenv('POSTGRES_HOST'),
         'PORT': os.getenv('POSTGRES_PORT'),
     }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
 }
 
 # Password validation
@@ -134,3 +131,6 @@ MEDIA_ROOT = 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CSRF_TRUSTED_ORIGINS = ['https://n-developerteam.ru']
+
+LOGIN_URL = 'users:login'
+LOGOUT_REDIRECT_URL = 'home'
